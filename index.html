@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yiming Chen — PhD Candidate</title>
+  <meta name="description" content="Personal academic website of Yiming Chen, PhD Candidate in Computer Science." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=Source+Sans+3:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* ── RESET ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ── BASE ── */
+    body {
+      font-family: 'Source Sans 3', sans-serif;
+      font-weight: 400;
+      font-size: 16px;
+      color: #1a1a1a;
+      background: #ffffff;
+      line-height: 1.6;
+    }
+
+    a { color: #185FA5; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── LAYOUT ── */
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 5rem;
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      grid-template-rows: auto 1fr;
+      gap: 0;
+    }
+
+    /* ── TOP NAV ── */
+    .topnav {
+      grid-column: 1 / -1;
+      display: flex;
+      justify-content: flex-end;
+      gap: 2rem;
+      padding-bottom: 1.5rem;
+      margin-bottom: 2.5rem;
+      border-bottom: 1px solid #e5e5e5;
+    }
+
+    .topnav a {
+      font-size: 14px;
+      color: #888;
+      text-decoration: none;
+    }
+
+    .topnav a:hover { color: #1a1a1a; }
+    .topnav a.active { color: #1a1a1a; font-weight: 500; }
+
+    /* ── SIDEBAR ── */
+    .sidebar {
+      padding-right: 3rem;
+      padding-top: 0.25rem;
+    }
+
+    .avatar {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      background: #f5f5f5;
+      border: 1px solid #e5e5e5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Lora', serif;
+      font-size: 52px;
+      color: #999;
+      margin-bottom: 1.25rem;
+      overflow: hidden;
+    }
+
+    /* Uncomment and use this if you have a photo:
+    .avatar img {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      margin-bottom: 1.25rem;
+    }
+    */
+
+    .sidebar-name {
+      font-family: 'Lora', serif;
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 1.3;
+      margin-bottom: 4px;
+    }
+
+    .sidebar-title {
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 1.5rem;
+      line-height: 1.5;
+    }
+
+    .divider {
+      height: 1px;
+      background: #e5e5e5;
+      margin: 1.25rem 0;
+    }
+
+    .sidebar-links {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .sidebar-links a {
+      font-size: 13px;
+      color: #555;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .sidebar-links a:hover { color: #1a1a1a; }
+
+    .sidebar-links svg {
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
+      opacity: 0.45;
+    }
+
+    .sidebar-address {
+      font-size: 12px;
+      color: #999;
+      line-height: 1.7;
+    }
+
+    /* ── MAIN CONTENT ── */
+    .main {
+      padding-left: 2.5rem;
+      border-left: 1px solid #e5e5e5;
+    }
+
+    .section-title {
+      font-family: 'Lora', serif;
+      font-size: 22px;
+      font-weight: 400;
+      margin-bottom: 1.25rem;
+    }
+
+    /* ── HOME ── */
+    .about-text {
+      font-size: 15px;
+      line-height: 1.85;
+      color: #1a1a1a;
+      margin-bottom: 1rem;
+    }
+
+    .about-text strong { font-weight: 500; }
+
+    .news-label {
+      font-size: 11px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #aaa;
+      margin: 2.5rem 0 1rem;
+    }
+
+    .news-item {
+      display: grid;
+      grid-template-columns: 72px 1fr;
+      gap: 0.75rem;
+      padding: 0.65rem 0;
+      border-top: 1px solid #e5e5e5;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .news-date {
+      font-size: 12px;
+      color: #aaa;
+      padding-top: 1px;
+    }
+
+    /* ── APPLICATIONS ── */
+    .page-subtitle {
+      font-size: 14px;
+      color: #888;
+      margin-bottom: 1.5rem;
+      line-height: 1.7;
+    }
+
+    .pub-item {
+      padding: 1.5rem 0;
+      border-top: 1px solid #e5e5e5;
+    }
+
+    .pub-item:last-child { border-bottom: 1px solid #e5e5e5; }
+
+    .pub-title {
+      font-family: 'Lora', serif;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.45;
+      margin-bottom: 5px;
+    }
+
+    .pub-authors {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 5px;
+    }
+
+    .pub-authors em { font-style: normal; font-weight: 500; color: #1a1a1a; }
+
+    .pub-venue-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+
+    .pub-venue {
+      font-size: 13px;
+      color: #888;
+      font-style: italic;
+    }
+
+    .badge {
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 3px;
+      font-weight: 500;
+    }
+
+    .badge-spotlight { background: #fef3cd; color: #7d4e00; border: 1px solid #f0c040; }
+    .badge-oral      { background: #d4edda; color: #155724; border: 1px solid #7bcf96; }
+
+    .pub-links { display: flex; gap: 0; }
+
+    .pub-links a {
+      font-size: 13px;
+      color: #185FA5;
+      text-decoration: none;
+    }
+
+    .pub-links a:hover { text-decoration: underline; }
+
+    .pub-links a + a::before {
+      content: " · ";
+      color: #ccc;
+      margin: 0 4px;
+    }
+
+    /* ── PAGE TOGGLE ── */
+    .page-section { display: none; }
+    .page-section.active { display: block; }
+
+    /* ── FOOTER ── */
+    footer {
+      grid-column: 1 / -1;
+      margin-top: 4rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #e5e5e5;
+      font-size: 12px;
+      color: #bbb;
+      text-align: right;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 680px) {
+      .page {
+        grid-template-columns: 1fr;
+        padding: 1.5rem 1rem 3rem;
+      }
+
+      .topnav { justify-content: flex-start; }
+
+      .sidebar {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 1rem;
+        padding-right: 0;
+        padding-bottom: 2rem;
+        margin-bottom: 2rem;
+        border-bottom: 1px solid #e5e5e5;
+      }
+
+      .avatar { width: 80px; height: 80px; font-size: 26px; margin-bottom: 0; }
+      .sidebar-name { font-size: 16px; }
+      .main { padding-left: 0; border-left: none; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ════════════════ NAV ════════════════ -->
+  <nav class="topnav">
+    <a href="#" class="active" onclick="showPage('home', this); return false;">Home</a>
+    <a href="#" onclick="showPage('applications', this); return false;">Applications</a>
+  </nav>
+
+  <!-- ════════════════ SIDEBAR ════════════════ -->
+  <aside class="sidebar">
+
+    <!-- OPTION A: Placeholder initials (default) — change "Y" to your initial -->
+    <div class="avatar">Y</div>
+
+    <!-- OPTION B: Use a real photo — delete the div above and uncomment below:
+    <img class="avatar" src="photo.jpg" alt="Your Name" />
+    Put your photo file (named photo.jpg) in the same folder as index.html
+    -->
+
+    <!-- ✏️ EDIT: your name and title -->
+    <div class="sidebar-name">Yiming Chen</div>
+    <div class="sidebar-title">
+      PhD Candidate<br>
+      Computer Science
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- ✏️ EDIT: replace href="#" with real URLs, update display text -->
+    <div class="sidebar-links">
+      <a href="mailto:yiming@cs.uni.edu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        yiming@cs.uni.edu
+      </a>
+      <a href="https://scholar.google.com/citations?user=YOURID" target="_blank">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        Google Scholar
+      </a>
+      <a href="https://github.com/yourusername" target="_blank">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        GitHub
+      </a>
+      <a href="https://linkedin.com/in/yourusername" target="_blank">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+      <a href="cv.pdf" target="_blank">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        Curriculum Vitae
+      </a>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- ✏️ EDIT: your office address -->
+    <div class="sidebar-address">
+      Gates Hall 312<br>
+      XYZ University<br>
+      Ithaca, NY 14853
+    </div>
+
+  </aside>
+
+  <!-- ════════════════ MAIN CONTENT ════════════════ -->
+  <main class="main">
+
+    <!-- ── HOME PAGE ── -->
+    <div id="page-home" class="page-section active">
+
+      <h1 class="section-title">About me</h1>
+
+      <!-- ✏️ EDIT: your bio — use <strong> for bold words -->
+      <p class="about-text">
+        I am a <strong>PhD candidate in Computer Science</strong> at XYZ University, advised by
+        <strong>Prof. Li Wei</strong>. My research sits at the intersection of machine learning
+        and reliability — I build models that don't just perform well on benchmarks, but remain
+        trustworthy when deployed in the wild.
+      </p>
+      <p class="about-text">
+        My current focus is on <strong>uncertainty quantification</strong> and
+        <strong>distribution shift</strong>: how can we know when a model doesn't know?
+        I develop methods grounded in conformal prediction, Bayesian deep learning, and
+        distributionally robust optimization to make ML systems more calibrated and dependable.
+      </p>
+      <p class="about-text">
+        Before my PhD, I received my B.S. in Computer Science from University of [X].
+        I have interned at [Lab / Company] and spent a semester as a visiting researcher
+        at [Institution].
+      </p>
+
+      <!-- ✏️ EDIT: news items — copy/paste a .news-item block to add more -->
+      <div class="news-label">Recent news</div>
+
+      <div class="news-item">
+        <div class="news-date">Jan 2025</div>
+        <div>Paper accepted at <a href="#">ICLR 2025</a> on conformal prediction for LLMs.</div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">Oct 2024</div>
+        <div>Presented a <strong>Spotlight</strong> paper at NeurIPS 2024 in Vancouver.</div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">Jun 2024</div>
+        <div>Started research internship at <a href="#">Google DeepMind</a>, London.</div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">Sep 2023</div>
+        <div>Paper accepted at <a href="#">ICML 2023</a> on distributionally robust fine-tuning.</div>
+      </div>
+
+    </div><!-- /page-home -->
+
+    <!-- ── APPLICATIONS PAGE ── -->
+    <div id="page-applications" class="page-section">
+
+      <h1 class="section-title">Applications</h1>
+      <p class="page-subtitle">Selected publications and preprints. <em>Bold name</em> denotes corresponding author.</p>
+
+      <!-- ✏️ EDIT: copy/paste a .pub-item block to add more papers
+           Badges: use class="badge badge-spotlight" or class="badge badge-oral"
+           Remove the badge span entirely if no award -->
+
+      <div class="pub-item">
+        <div class="pub-title">Calibrated Uncertainty Estimates for Large Language Models via Conformal Prediction</div>
+        <div class="pub-authors"><em>Yiming Chen</em>, Sarah Park, James Liu, Li Wei</div>
+        <div class="pub-venue-row">
+          <span class="pub-venue">ICLR 2025</span>
+          <span class="badge badge-spotlight">Spotlight</span>
+        </div>
+        <div class="pub-links">
+          <a href="#">Paper</a>
+          <a href="#">Code</a>
+          <a href="#">Poster</a>
+        </div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-title">Distributionally Robust Fine-Tuning under Covariate Shift</div>
+        <div class="pub-authors"><em>Yiming Chen</em>, Kevin Zhang, Li Wei</div>
+        <div class="pub-venue-row">
+          <span class="pub-venue">NeurIPS 2024</span>
+          <span class="badge badge-oral">Oral</span>
+        </div>
+        <div class="pub-links">
+          <a href="#">Paper</a>
+          <a href="#">Code</a>
+          <a href="#">Slides</a>
+        </div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-title">Beyond In-Domain Accuracy: Benchmarking Reliability under Natural Distribution Shifts</div>
+        <div class="pub-authors"><em>Yiming Chen</em>, Anna Torres, Michael Nguyen, Li Wei</div>
+        <div class="pub-venue-row">
+          <span class="pub-venue">ICML 2023</span>
+        </div>
+        <div class="pub-links">
+          <a href="#">Paper</a>
+          <a href="#">Dataset</a>
+        </div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-title">A Survey of Uncertainty Quantification in Deep Learning: Methods, Applications, and Open Challenges</div>
+        <div class="pub-authors"><em>Yiming Chen</em>, Li Wei</div>
+        <div class="pub-venue-row">
+          <span class="pub-venue">arXiv preprint, 2024</span>
+        </div>
+        <div class="pub-links">
+          <a href="#">arXiv</a>
+        </div>
+      </div>
+
+    </div><!-- /page-applications -->
+
+  </main>
+
+  <!-- ════════════════ FOOTER ════════════════ -->
+  <footer>
+    <!-- ✏️ EDIT: your name -->
+    &copy; 2025 Yiming Chen
+  </footer>
+
+</div><!-- /page -->
+
+<script>
+  function showPage(name, el) {
+    document.querySelectorAll('.page-section').forEach(function(s) {
+      s.classList.remove('active');
+    });
+    document.getElementById('page-' + name).classList.add('active');
+    document.querySelectorAll('.topnav a').forEach(function(a) {
+      a.classList.remove('active');
+    });
+    el.classList.add('active');
+  }
+</script>
+
+</body>
+</html>
